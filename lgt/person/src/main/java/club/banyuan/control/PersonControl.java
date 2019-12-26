@@ -28,7 +28,13 @@ public class PersonControl {
     PersonDao personDao;
     @Autowired
     DataSource dataSource;
-
+    @Logging
+    public  int number(int a,String b){
+        return  100;
+    }
+    public PersonDao getPersonDao() {
+        return personDao;
+    }
     @GetMapping("/person")
     public Person person(HttpServletRequest req, HttpServletResponse resp ) throws UnsupportedEncodingException {
         req.setCharacterEncoding("utf-8");
