@@ -1,0 +1,5 @@
+<bean id="userService" class="com.lyu.spring.service.impl.UserService">
+	<constructor-arg ref="userDaoJdbc"></constructor-arg>
+</bean>
+		<!-- 注册jdbc实现的dao -->
+<!--<bean id="userDaoJdbc" class="com.banyuan.UserDaoJdbc"/>-->
