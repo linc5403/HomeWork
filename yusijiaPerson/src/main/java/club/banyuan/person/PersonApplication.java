@@ -11,7 +11,6 @@ public class PersonApplication {
     private static Logger logger = LoggerFactory.getLogger(PersonApplication.class);
 
     public static void main(String[] args) {
-        logger.debug("Spring=====================");
         SpringApplication.run(PersonApplication.class, args);
     }
 
