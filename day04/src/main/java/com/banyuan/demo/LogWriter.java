@@ -12,17 +12,31 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class LogWriter {
-    private Logger logger= LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("@annotation(com.banyuan.demo.logging)")
-    public void pointCut(){}
-
-    @Before(value="pointCut()")
-    public void doSomethingBefore(){
-    logger.info("Do something Before");
+    //1.pointcut
+    //2.一个空函数去执行，目的是为了简化代码流程
+    @Pointcut("@annotation(club.banyuan.springboot.Logging)&&args(a,b)")
+    public void pointCut(int[] a, int b) {
     }
 
-    @After(value="pointCut()")
-    public void doSomethingAfter(){
-    logger.info("Do something After");}
+    //3。具体做的事情Advice
+    @Before(value = "pointCut(a, b)")
+    public void doSomethingBefore(int[] a, int b) {
+        logger.info("这个是传入的要查询的数======>" + b);
+        for (int m : a) {
+            logger.info("这个是传入的数组------>" + m);
+        }
+
+    }
+
+
+    @AfterReturning(returning = "rel", value = "pointCut(a,b)")
+    public void doSomethingAfter(int[] a, int b, int rel) {
+
+        logger.info("这是返回值+++++++>" + rel);
+
+    }
+
 }
+
