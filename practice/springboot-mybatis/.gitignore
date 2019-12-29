@@ -1,8 +1,18 @@
+### vim ###
+*.swp
+
+### maven ###
+.mvn/
+mvnw
+mvnw.cmd
+
+
+
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+
+### macos ***
+**/.DS_Store
 
 ### STS ###
 .apt_generated
