@@ -24,7 +24,7 @@ public class Person {
     @Column(name="gender")
     private String gender;
     @Column(name="birthday")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyyMMddHHmmss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
     @Column(name="ADDRESS")
     private String address;
@@ -32,11 +32,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String name, String gender, String address) {
+    public Person(int id, String name, Date birthday,String gender, String address) {
         this.id = id;
         this.name = name;
         this.gender = gender;
-//        this.birthday = birthday;
+        this.birthday = birthday;
         this.address = address;
     }
 

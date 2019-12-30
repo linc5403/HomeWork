@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,8 +40,7 @@ public class PersonControl {
     public Person person(HttpServletRequest req, HttpServletResponse resp ) throws UnsupportedEncodingException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html;charset=utf-8");
-        String id=req.getParameter("id");
-        System.out.println(id);
+        String id=req.getParameter("sid");
         List<Person> allById = personDao.findAllById(Collections.singleton(Integer.parseInt(id)));
         return allById.get(0);
     }
@@ -64,14 +64,9 @@ public class PersonControl {
         int id=Integer.parseInt(req.getParameter("id"));
         String name=req.getParameter("name");
         String gender=req.getParameter("gender");
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-dd");
-//        Date date= sdf.parse(req.getParameter("date"));
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date= sdf.parse(req.getParameter("date"));
         String address=req.getParameter("address");
-        personDao.save(new Person(id,name,gender,address));
-
-
+        personDao.save(new Person(id,name,date,gender,address));
     }
-
-
-
 }
