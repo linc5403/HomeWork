@@ -7,8 +7,10 @@ import club.banyuan.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class CommentController {
@@ -21,14 +23,17 @@ public class CommentController {
         this.blogService = blogService;
     }
 
-    @PostMapping("/blogs/{id}/comments")
+    @RequestMapping(value = "/blogs/{id}/comments", method = {RequestMethod.GET, RequestMethod.POST})
     String post(@PathVariable int id,
                 User user,
-                @RequestParam String content) {
+                HttpSession session
+                ) {
         Comment c = new Comment();
-        c.setContent(content);
+        c.setContent((String)session.getAttribute("content"));
+        session.removeAttribute("content");
         c.setCommenter(user);
         c.setBlog(blogService.findBlog(id));
+        System.out.println(c);
         commentService.createComment(c);
         return "redirect:/blogs/" + id;
     }
