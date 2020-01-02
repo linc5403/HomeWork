@@ -36,7 +36,7 @@ public class IndexController {
         // Your Code goes here
         // 渲染模板list.html
         User user = userService.findByName(username);
-        PageInfo pageInfo = blogService.findBlogsByUser(user, page.orElse(0), size.orElse(5));
+        PageInfo pageInfo = blogService.findBlogsByUser(user, page.orElse(1), size.orElse(5));
         logger.info("{}", pageInfo);
         model.addAttribute("blogs", pageInfo);
         model.addAttribute(user);

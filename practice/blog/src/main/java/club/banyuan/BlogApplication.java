@@ -23,6 +23,8 @@ public class BlogApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
         BlogService blogService = context.getBean(BlogService.class);
+        Blog blog10 = blogService.findBlog(10);
+        logger.debug("{}", blog10);
         UserDao userDao = context.getBean(UserDao.class);
         User user1 = userDao.selectUserByName("aa");
         PageInfo pageInfo = blogService.findBlogsByUser(user1, 0, 10);

@@ -6,7 +6,7 @@ import java.util.Date;
 public class Comment implements Serializable {
     private int id;
     private Date createdTime;
-    private int authorId;
+    private int userId;
     private int blogId;
     private String content;
 
@@ -26,12 +26,12 @@ public class Comment implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public int getAuthorId() {
-        return authorId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getBlogId() {
@@ -55,7 +55,7 @@ public class Comment implements Serializable {
         return "Comment{" +
                 "id=" + id +
                 ", createdTime=" + createdTime +
-                ", authorId=" + authorId +
+                ", userId=" + userId +
                 ", blogId=" + blogId +
                 ", content='" + content + '\'' +
                 '}';
