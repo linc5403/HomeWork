@@ -34,7 +34,6 @@ public class BlogCreateForm implements Serializable {
         Blog blog = new Blog();
         blog.setTitle(this.title);
         blog.setContent(this.content);
-        blog.setCreatedTime(new Date());
         blog.setAuthor(author);
 
         return blog;

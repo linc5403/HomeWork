@@ -12,6 +12,12 @@
     <select id="findBlogsByUserId" resultType="club.banyuan.bean.Blog">
         SELECT * from blog where user_id = #{userId}
     </select>
+    <insert id="addBlog" parameterType="club.banyuan.bean.Blog">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `blog`(title, content, user_id) VALUES (#{title}, #{content}, #{userId})
+    </insert>
 
 </mapper>
 

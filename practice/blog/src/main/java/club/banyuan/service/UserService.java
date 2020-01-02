@@ -23,6 +23,10 @@ public class UserService {
         return new User();
     }
 
-    public User login(String s1, String s2) { return null; }
+    public User login(String s1, String s2) {
+        User user = userDao.selectUserByName(s1);
+        return (s2.equals(user.getPassword())) ? user : null;
+
+    }
 
 }

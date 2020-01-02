@@ -38,7 +38,7 @@ public class BlogService {
         return new PageInfo(blogDao.findBlogsByUsername(user.getName()));
     }
 
-    public Blog createBlog(Blog blog) {
-        return new Blog();
+    public void createBlog(Blog blog) {
+        blogDao.addBlog(blog);
     }
 }

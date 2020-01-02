@@ -8,7 +8,16 @@ public class Blog implements Serializable {
     private String content;
     private Date createdTime;
     private int id;
-    private int user_id;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    private int userId;
 
     public Blog (String title, String content, User user) {
         return;
@@ -19,7 +28,7 @@ public class Blog implements Serializable {
     }
 
     public void setAuthor(User author) {
-
+        this.userId = author.getId();
     }
 
     public String getTitle() {
@@ -54,14 +63,6 @@ public class Blog implements Serializable {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
     @Override
     public String toString() {
         return "Blog{" +
@@ -69,7 +70,7 @@ public class Blog implements Serializable {
                 ", content='" + content + '\'' +
                 ", createdTime=" + createdTime +
                 ", id=" + id +
-                ", user_id=" + user_id +
+                ", userId=" + userId +
                 '}';
     }
 }

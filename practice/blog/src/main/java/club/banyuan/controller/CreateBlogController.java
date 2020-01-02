@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -33,11 +34,14 @@ public class CreateBlogController {
     }
 
     @PostMapping("/blogs")
-    public String post(@Valid BlogCreateForm form, BindingResult result) {
-        if (result.hasErrors())
-            return "create";
-        User user = userService.findByName("aa");
-        Blog blog = blogService.createBlog(form.toBlog(user));
+    public String post(
+            @Valid BlogCreateForm form,
+            BindingResult result,
+            HttpSession session
+    ) {
+        User user = (User)session.getAttribute("CURRENT_USer");
+        Blog blog = form.toBlog(user);
+        blogService.createBlog(blog);
         return "redirect:/blogs/" + blog.getId();
     }
 }
