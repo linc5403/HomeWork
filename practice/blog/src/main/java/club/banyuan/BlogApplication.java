@@ -22,11 +22,11 @@ public class BlogApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
-        BlogService blogService = context.getBean(BlogService.class);
-        UserDao userDao = context.getBean(UserDao.class);
-        User user1 = userDao.selectUserByName("aa");
-        PageInfo pageInfo = blogService.findBlogsByUser(user1, 0, 10);
-        logger.info("{}", pageInfo);
+//        BlogService blogService = context.getBean(BlogService.class);
+//        UserDao userDao = context.getBean(UserDao.class);
+//        User user1 = userDao.selectUserByName("aa");
+//        PageInfo pageInfo = blogService.findBlogsByUser(user1, 0, 10);
+//        logger.info("{}", pageInfo);
 
        /* Blog blog = new Blog();
         blog.setAuthor(user1);

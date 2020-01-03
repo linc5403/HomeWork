@@ -24,7 +24,7 @@ public class Comment implements Serializable {
         return "Comment{" +
                 "id=" + id +
                 ", createdTime='" + createdTime + '\'' +
-                ", authorId=" + userId +
+                ", userId=" + userId +
                 ", blogId=" + blogId +
                 ", content='" + content + '\'' +
                 '}';
