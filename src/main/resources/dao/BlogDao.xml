@@ -12,6 +12,9 @@
     <select id="findBlogsByUserId" resultType="club.banyuan.bean.Blog">
         SELECT * from blog where user_id = #{userId}
     </select>
+    <select id="listBlogs" resultType="club.banyuan.bean.Blog">
+        SELECT * from blog
+    </select>
     <insert id="addBlog" parameterType="club.banyuan.bean.Blog">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()

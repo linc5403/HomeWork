@@ -9,9 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -28,8 +26,14 @@ public class IndexController {
         this.userService = userService;
     }
 
+    @RequestMapping("/")
+    public String getHomepage() {
+        return "index";
+    }
+
     @GetMapping("/users/{username}")
-    public String getByPage(@PathVariable("username") String username,
+    @ResponseBody
+    public PageInfo getByPage(@PathVariable("username") String username,
                             @RequestParam Optional<Integer> page,
                             @RequestParam Optional<Integer> size,
                             Model model) {
@@ -38,9 +42,9 @@ public class IndexController {
         User user = userService.findByName(username);
         PageInfo pageInfo = blogService.findBlogsByUser(user, page.orElse(1), size.orElse(5));
         logger.info("{}", pageInfo);
-        model.addAttribute("blogs", pageInfo);
-        model.addAttribute(user);
-        return "list";
+/*        model.addAttribute("blogs", pageInfo);
+        model.addAttribute(user);*/
+        return pageInfo;
     }
 
     @GetMapping("/about")

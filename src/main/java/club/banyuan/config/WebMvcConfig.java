@@ -22,4 +22,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/blogs/*/comments");
     }
+
 }

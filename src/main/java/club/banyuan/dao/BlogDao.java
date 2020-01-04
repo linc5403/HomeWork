@@ -12,5 +12,6 @@ public interface BlogDao {
     Blog findBlogById(@Param("id") int id);
     List<Blog> findBlogsByUsername(@Param("username") String username);
     List<Blog> findBlogsByUserId(@Param("userId") int userId);
+    List<Blog> listBlogs();
     void addBlog(Blog blog);
 }

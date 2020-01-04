@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogService {
@@ -33,6 +34,12 @@ public class BlogService {
     {
         return null;
     }
+
+    public PageInfo listBlogs(Integer page, Integer size, String sort, String order) {
+        PageHelper.startPage(page, size, sort + " " + order);
+        return new PageInfo(blogDao.listBlogs());
+    }
+
     public PageInfo findBlogsByUser(User user, int page, int size) {
         PageHelper.startPage(page, size);
         return new PageInfo(blogDao.findBlogsByUsername(user.getName()));

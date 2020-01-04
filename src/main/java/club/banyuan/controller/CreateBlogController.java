@@ -1,12 +1,10 @@
 package club.banyuan.controller;
 
 import club.banyuan.bean.Blog;
-import club.banyuan.form.BlogCreateForm;
-import club.banyuan.bean.Comment;
 import club.banyuan.bean.User;
+import club.banyuan.form.BlogCreateForm;
 import club.banyuan.service.BlogService;
 import club.banyuan.service.UserService;
-import club.banyuan.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -27,7 +25,7 @@ public class CreateBlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/blogs/create")
+/*    @GetMapping("/blogs/create")
     public String get() {
         System.out.println("/posts/create!!!!!!!!!!!!!!!!");
         return "create";
@@ -43,5 +41,5 @@ public class CreateBlogController {
         Blog blog = form.toBlog(user);
         blogService.createBlog(blog);
         return "redirect:/blogs/" + blog.getId();
-    }
+    }*/
 }
