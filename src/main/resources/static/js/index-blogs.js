@@ -26,9 +26,9 @@ function formatBlogItem(blogs) {
     var navStr = "<ul id='ul-nav' class='pager'>";
     if (blogs.hasPreviousPage)
     {
-        navStr += "<li class='prev'>";
-        navStr += "<a href='javascript:void(0)' rel='" + blogs.prePage + "'>";
-        // navStr += "<span aria-hidden='true'>&larr;</span>";
+        navStr += "<li class='previous'>";
+        navStr += "<a href='javascript:void(0)' onclick='getBlogs(" + blogs.prePage + ")' >";
+        navStr += "<span aria-hidden='true'>&larr;</span>";
         navStr += "上一页";
         navStr += "</a>";
         navStr += "</li>";
@@ -36,22 +36,15 @@ function formatBlogItem(blogs) {
     if (blogs.hasNextPage)
     {
         navStr += "<li class='next'>";
-        navStr += "<a href='javascript:void(0)' rel='" + blogs.nextPage + "'>";
-        // navStr += "<span aria-hidden='true'>&larr;</span>";
+        navStr += "<a href='javascript:void(0)' onclick='getBlogs(" + blogs.nextPage + ")' >";
         navStr += "下一页";
+        navStr += "<span aria-hidden='true'>&rarr;</span>";
         navStr += "</a>";
         navStr += "</li>";
     }
     navStr += "</ul>";
-    console.log("nav111111111")
-    console.log(nav);
-    console.log(navStr);
     nav.html(navStr);
-    console.log("nav222222222")
-    console.log(nav);
-    console.log(blogList);
     blogList.append(nav);
-    console.log(blogList);
 }
 
 function getBlogs(page) {
@@ -69,16 +62,16 @@ function getBlogs(page) {
     )
 }
 
-
 $(function(){
     getBlogs(1);
-    $("#ul-nav li a").on('click',function(){
+    // $("#ul-nav li a").on('click',function(){
+/*    $("next li").on('click','a', function(){
         console.log($(this).text());
         var rel = $(this).attr("rel");
         if(rel){
             getBlogs(rel);
         }
-    });
+    });*/
 });
 
 
