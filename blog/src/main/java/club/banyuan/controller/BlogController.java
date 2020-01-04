@@ -33,10 +33,6 @@ public class BlogController {
         List<Comment> comments = commentService.getCommentOfBlog(blog);
         model.addAttribute("blog", blog);
         model.addAttribute("comments", comments);
-        System.out.println(blog);
-        for (Comment comment : comments) {
-            System.out.println(comment);
-        }
         return "item";
     }
 }

@@ -4,6 +4,8 @@ import club.banyuan.bean.Comment;
 import club.banyuan.bean.User;
 import club.banyuan.service.BlogService;
 import club.banyuan.service.CommentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class CommentController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     private final CommentService commentService;
     private final BlogService blogService;
 
@@ -31,9 +34,9 @@ public class CommentController {
         Comment c = new Comment();
         c.setContent((String)session.getAttribute("content"));
         session.removeAttribute("content");
+        logger.info("to create comment {}", c);
         c.setCommenter(user);
         c.setBlog(blogService.findBlog(id));
-        System.out.println(c);
         commentService.createComment(c);
         return "redirect:/blogs/" + id;
     }
