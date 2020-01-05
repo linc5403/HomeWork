@@ -25,7 +25,7 @@ public class PersonalController {
     BlogService blogService;
 
     @LoggerAnnotation
-    @GetMapping("/{username}")
+    @GetMapping("/users/{username}")
     public String personalGet(@PathVariable("username") String username,
                               @RequestParam("page") Optional<Integer> page,
                               @RequestParam("size") Optional<Integer> size,

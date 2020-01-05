@@ -1,18 +1,19 @@
 package club.banyuan.myblog.module;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Blog implements Serializable {
     private Integer id;
     private String title;
-    private Integer createdTime;
+    private Date createdTime;
     private Integer userId;
     private String content;
 
     public Blog() {
     }
 
-    public Blog(String title, Integer createdTime, Integer userId, String content) {
+    public Blog(String title, Date createdTime, Integer userId, String content) {
         this.title = title;
         this.createdTime = createdTime;
         this.userId = userId;
@@ -46,11 +47,11 @@ public class Blog implements Serializable {
         this.title = title;
     }
 
-    public Integer getCreatedTime() {
+    public Date getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Integer createdTime) {
+    public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 

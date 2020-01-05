@@ -9,5 +9,5 @@ import java.util.List;
 public interface CommentService {
     Comment selectCommentById(Integer id);
 
-    PageInfo selectCommentByBlogId(Integer page, Integer size, Integer id);
+    List<Comment> selectCommentByBlogId(Integer id);
 }

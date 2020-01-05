@@ -39,7 +39,7 @@ public class loginController {
         User user = userService.loginService(email, password);
         if (user != null) {
             session.setAttribute("USER_MESSAGE", user);
-            return "redirect:".concat(next.orElse("/" + URLEncoder.encode("".concat(user.getName()), "utf-8")));
+            return "redirect:".concat(next.orElse("/users/" + URLEncoder.encode("".concat(user.getName()), "utf-8")));
         } else {
             return "login";
         }

@@ -32,9 +32,8 @@ public class CommentServiceImpl implements CommentService {
 
     @LoggerAnnotation
     @Override
-    public PageInfo selectCommentByBlogId(Integer page,Integer size,Integer id) {
-        PageHelper.startPage(page,size);
-        PageInfo pageInfo=new PageInfo(commentDao.selectCommentByBlogId(id));
-        return pageInfo;
+    public List<Comment> selectCommentByBlogId(Integer id) {
+        List<Comment> list=commentDao.selectCommentByBlogId(id);
+        return list;
     }
 }
