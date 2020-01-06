@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @MapperScan("club.banyuan.dao")
@@ -22,8 +24,14 @@ public class BlogApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
+
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println(encoder.encode("abcd"));
+
+/*
         BlogDao blogDao = context.getBean(BlogDao.class);
         System.out.println(blogDao.findBlogById(1).toString());
+*/
 
        /* Blog blog = blogDao.findBlogDetailById(1);
         System.out.println("Ending...");
