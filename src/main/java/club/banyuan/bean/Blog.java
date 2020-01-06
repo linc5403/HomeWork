@@ -1,34 +1,35 @@
 package club.banyuan.bean;
 
+import org.springframework.context.annotation.Bean;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Blog implements Serializable {
+public class Blog {
     private String title;
     private String content;
     private Date createdTime;
     private int id;
+    private User user;
 
-    public int getUserId() {
-        return userId;
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createdTime=" + createdTime +
+                ", id=" + id +
+                ", user=" + user +
+                '}';
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public Blog() {
     }
 
-    private int userId;
-
-    public Blog (String title, String content, User user) {
-        return;
-    }
-
-    public Blog () {
-        return;
-    }
-
-    public void setAuthor(User author) {
-        this.userId = author.getId();
+    public Blog(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -63,14 +64,11 @@ public class Blog implements Serializable {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Blog{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", createdTime=" + createdTime +
-                ", id=" + id +
-                ", userId=" + userId +
-                '}';
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

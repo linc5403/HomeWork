@@ -42,7 +42,7 @@ public class RegisterController {
         System.out.println(user);
         userService.register(user);
         Blog blog = new Blog("aaaa", "aaaaaaaaa", user);
-        blog.setAuthor(user);
+        blog.setUser(user);
         blogService.createBlog(blog);
         redirectAttributes.addFlashAttribute("message", "success");
         return "redirect:/admin";
