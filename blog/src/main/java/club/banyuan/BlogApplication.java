@@ -22,6 +22,8 @@ public class BlogApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
+        BlogDao blogDao = context.getBean(BlogDao.class);
+        System.out.println(blogDao.findBlogById(1).toString());
        /*
         BlogService blogService = context.getBean(BlogService.class);
         Blog blog10 = blogService.findBlog(10);

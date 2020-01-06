@@ -8,28 +8,25 @@ public class Blog implements Serializable {
     private String content;
     private Date createdTime;
     private int id;
+    private User author;
 
-    public int getUserId() {
-        return userId;
+    public Blog() {
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public Blog(String title, String content, User author) {
+        this.title = title;
+        this.content = content;
+        this.author = author;
     }
 
-    private int userId;
-
-    public Blog (String title, String content, User user) {
-        return;
-    }
-
-    public Blog () {
-        return;
+    public User getAuthor() {
+        return author;
     }
 
     public void setAuthor(User author) {
-        this.userId = author.getId();
+        this.author = author;
     }
+
 
     public String getTitle() {
         return title;
@@ -70,7 +67,7 @@ public class Blog implements Serializable {
                 ", content='" + content + '\'' +
                 ", createdTime=" + createdTime +
                 ", id=" + id +
-                ", userId=" + userId +
+                ", author=" + author.toString() +
                 '}';
     }
 }

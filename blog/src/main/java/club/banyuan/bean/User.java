@@ -8,10 +8,6 @@ public class User implements Serializable {
     private String password;
     private String email;
 
-    public User(String s1, String s2) {}
-    public User() {}
-
-
     public int getId() {
         return id;
     }
