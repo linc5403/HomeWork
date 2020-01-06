@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface BlogDao {
     Blog findBlogById(@Param("id") int id);
+    Blog findBlogDetailById(@Param("id") int id);
     List<Blog> findBlogsByUsername(@Param("username") String username);
     List<Blog> findBlogsByUserId(@Param("userId") int userId);
     void addBlog(Blog blog);

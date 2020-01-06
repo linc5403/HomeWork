@@ -4,6 +4,16 @@
 
 <mapper namespace="club.banyuan.dao.BlogDao">
 
+    <resultMap id="blogDetailMap" type="club.banyuan.bean.Blog" autoMapping="true">
+        <id property="id" column="id"></id>
+        <association property="author" column="user_id" resultMap="userMap" javaType="club.banyuan.bean.User">
+            <id property="id" column="user_id"></id>
+        </association>
+        <collection property="comments" ofType="club.banyuan.bean.Comment" autoMapping="true" columnPrefix="comment_">
+            <id property="id" column="comment_id"></id>
+        </collection>
+    </resultMap>
+
     <resultMap id="blogMap" type="club.banyuan.bean.Blog" autoMapping="true">
         <id property="id" column="id"></id>
         <association property="author" column="user_id" resultMap="userMap" javaType="club.banyuan.bean.User">
@@ -19,6 +29,17 @@
     <select id="findBlogById" resultMap="blogMap">
         select blog.id , blog.title , blog.content , blog.created_time , blog.user_id , user.name , user.password , user.email
         from blog left join user on blog.user_id = user.id  where blog.id = #{id}
+    </select>
+
+    <select id="findBlogDetailById" resultMap="blogDetailMap">
+    select blog.id, blog.title, blog.content, blog.created_time, blog.user_id ,
+    user.name, user.email , user.password,
+    comment.content as comment_content,
+    comment.id as comment_id,
+    comment.created_time as comment_created_time,
+    comment.blog_id as comment_blog_id,
+    comment.user_id as comment_user_id
+    from (blog join user on blog.user_id = user.id) join comment on comment.blog_id = blog.id where blog.id = #{id}
     </select>
 
    <!-- <select id="findBlogById" resultType="club.banyuan.bean.Blog">

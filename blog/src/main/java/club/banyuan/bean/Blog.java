@@ -2,6 +2,7 @@ package club.banyuan.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Blog implements Serializable {
     private String title;
@@ -9,6 +10,15 @@ public class Blog implements Serializable {
     private Date createdTime;
     private int id;
     private User author;
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public Blog() {
     }
@@ -69,5 +79,20 @@ public class Blog implements Serializable {
                 ", id=" + id +
                 ", author=" + author.toString() +
                 '}';
+    }
+
+
+    public String detailToString() {
+        StringBuilder ret = new StringBuilder("Blog{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", createdTime=" + createdTime +
+                ", id=" + id +
+                ", author=" + author.toString() +
+                ", comments=");
+        for (Comment c: comments) {
+            ret.append(c.toString());
+        }
+        return ret.toString() + '}';
     }
 }
