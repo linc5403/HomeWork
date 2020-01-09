@@ -10,4 +10,6 @@ public interface CommentDao {
     Comment selectCommentById(Integer id);
 
     List<Comment> selectCommentByBlogId(Integer id);
+
+    boolean addComment(Comment comment);
 }

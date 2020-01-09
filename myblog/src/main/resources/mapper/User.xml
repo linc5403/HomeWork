@@ -5,5 +5,12 @@
     <select id="login" resultType="club.banyuan.myblog.module.User">
         select * from user where name=#{name}
     </select>
+
+    <insert id="addUser" parameterType="club.banyuan.myblog.module.User">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into user (name,password,email) values (#{name},#{password},#{email})
+    </insert>
 </mapper>
 

@@ -17,6 +17,11 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +

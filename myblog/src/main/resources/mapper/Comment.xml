@@ -5,5 +5,12 @@
     <select id="selectCommentByBlogId" resultType="club.banyuan.myblog.module.Comment">
         select c.* from blog b, comment c where b.id=c.blogId and b.id=#{id}
     </select>
+
+    <insert id="addComment" parameterType="club.banyuan.myblog.module.Comment">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into comment (createdTime,userId,blogId,content) values (#{createdTime},#{userId},#{blogId},#{content})
+    </insert>
 </mapper>
 

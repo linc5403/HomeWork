@@ -3,6 +3,7 @@ package club.banyuan.myblog.controller;
 import club.banyuan.myblog.annotation.LoggerAnnotation;
 import club.banyuan.myblog.module.Blog;
 import club.banyuan.myblog.module.Comment;
+import club.banyuan.myblog.module.User;
 import club.banyuan.myblog.service.BlogService;
 import club.banyuan.myblog.service.CommentService;
 import club.banyuan.myblog.service.UserService;
@@ -36,11 +37,15 @@ public class BlogController {
     public String personalGet(@PathVariable("id") Integer id,
                               @RequestParam("page") Optional<Integer> page,
                               @RequestParam("size") Optional<Integer> size,
-                              Model model){
-        Blog blog=blogService.selectBlogById(id);
-        List<Comment> list=commentService.selectCommentByBlogId(id);
+                              Model model,
+                              HttpSession session){
+        String  username=(String) session.getAttribute("USERNAME");
+        PageInfo pageInfo=blogService.selectBlogByUserName(page.orElse(1),size.orElse(1),username);
+        Blog blog=blogService.selectBlogById(((Blog)pageInfo.getList().get(0)).getId());
+        List<Comment> list=commentService.selectCommentByBlogId(((Blog)pageInfo.getList().get(0)).getId());
         model.addAttribute("blog",blog);
         model.addAttribute("comments",list);
+        model.addAttribute("blogs",pageInfo);
         logger.info("model: {}",model);
         return "item";
     }

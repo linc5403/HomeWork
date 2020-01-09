@@ -5,8 +5,21 @@
     <select id="selectBlogByUserName" resultType="club.banyuan.myblog.module.Blog">
         select b.* from user u,blog b where u.id=b.userid and  u.name=#{name}
     </select>
+
     <select id="selectBlogById" resultType="club.banyuan.myblog.module.Blog">
         select * from blog b where b.id=#{id}
     </select>
+
+    <insert id="addBlog" parameterType="club.banyuan.myblog.module.Blog">
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into blog (title,content,createdTime,userId) values (#{title},#{content},#{createdTime},#{userId})
+    </insert>
+
+    <delete id="deleteBlogById" parameterType="java.lang.Integer">
+        delete from blog where id=#{id}
+    </delete>
+
 </mapper>
 

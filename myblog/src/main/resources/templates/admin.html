@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
 <head lang="en">
   <meta charset="UTF-8">
   <title>文章列表</title>
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../static/css/footer.css">
-  <link rel="stylesheet" href="../static/css/blog.css">
-  <link rel="stylesheet" href="../static/css/admin.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/blog.css">
+  <link rel="stylesheet" href="/css/admin.css">
   <script src="//cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
   <script src="//cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 </head>
@@ -31,6 +31,7 @@
         <li><a href="#">最近</a></li>
         <li><a href="#">归档</a></li>
         <li><a href="#">关于</a></li>
+        <li><a th:href="@{'/admin/'}">管理</a></li>
       </ul>
       <form class="navbar-form navbar-right">
         <input type="text" class="form-control" placeholder="搜索...">
@@ -54,7 +55,7 @@
     </h1>
   </div>
   <div>
-    <a href="#" class="btn btn-primary blog-post-create-btn">创建新博客</a>
+    <a th:href="@{'/createBlog'}" class="btn btn-primary blog-post-create-btn">创建新博客</a>
   </div>
   <div class="row">
 
@@ -68,12 +69,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="blog-post" th:each="blog: ${blogs.content}">
+        <tr class="blog-post" th:each="blog: ${blogs.list}">
           <td class="blog-post-title" th:text="${blog.title}">"${blog.title}"</td>
           <td class="blog-post-create-date" th:text="${#dates.format(blog.createdTime, 'yyyy年MM月dd日')}">"{blog.createdTime}"</td>
           <td>
             <a class="btn btn-primary blog-post-edit-btn" href="#">编辑</a>
-            <form class="blog-post-delete-form" action="#" method="post" onsubmit="return confirm('确定要删除这篇文章吗？');">
+            <form class="blog-post-delete-form" th:action="|/deleteBlog/${blog.id}|" method="post" onsubmit="return confirm('确定要删除这篇文章吗？');">
               <button type="submit" class="btn btn-danger blog-post-delete-btn">删除</button>
             </form>
           </td>
@@ -94,8 +95,8 @@
 
     <nav>
       <ul class="pager">
-        <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-        <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="previous" th:if="${blogs.hasPreviousPage}"><a th:href="@{'/admin'+'?page='+${blogs.prePage}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+        <li class="next" th:if="${blogs.hasNextPage}"><a th:href="@{'/admin'+'?page='+${blogs.nextPage}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
       </ul>
     </nav>
 

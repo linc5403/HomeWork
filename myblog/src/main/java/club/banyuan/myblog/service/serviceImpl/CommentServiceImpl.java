@@ -33,7 +33,15 @@ public class CommentServiceImpl implements CommentService {
     @LoggerAnnotation
     @Override
     public List<Comment> selectCommentByBlogId(Integer id) {
-        List<Comment> list=commentDao.selectCommentByBlogId(id);
+        List<Comment> list = commentDao.selectCommentByBlogId(id);
         return list;
+    }
+
+    @Override
+    public boolean addComment(Comment comment) {
+        if (comment.getContent() != null && commentDao.addComment(comment)) {
+            return true;
+        }
+        return false;
     }
 }

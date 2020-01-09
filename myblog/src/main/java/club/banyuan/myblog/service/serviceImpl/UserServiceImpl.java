@@ -29,4 +29,12 @@ public class UserServiceImpl implements UserService {
         //可以返回账号错误
         return null;
     }
+
+    @Override
+    public Integer addUser(User user) {
+        if(user!=null){
+            return userDao.addUser(user);
+        }
+        return 0;
+    }
 }

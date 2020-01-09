@@ -9,5 +9,10 @@ import java.util.List;
 @Repository
 public interface BlogDao {
     Blog selectBlogById(Integer id);
+
     List<Blog> selectBlogByUserName(String name);
+
+    boolean addBlog(Blog blog);
+
+    boolean deleteBlogById(Integer id);
 }

@@ -2,10 +2,11 @@ package club.banyuan.myblog.module;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comment implements Serializable {
     private Integer id;
-    private Date createdTime;
+    private Timestamp createdTime;
     private Integer userId;
     private Integer blogId;
     private String content;
@@ -13,7 +14,7 @@ public class Comment implements Serializable {
     public Comment() {
     }
 
-    public Comment(Date createdTime, Integer userId, Integer blogId, String content) {
+    public Comment(Timestamp createdTime, Integer userId, Integer blogId, String content) {
         this.createdTime = createdTime;
         this.userId = userId;
         this.blogId = blogId;
@@ -39,11 +40,11 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public Date getCreatedTime() {
+    public Timestamp getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Date createdTime) {
+    public void setCreatedTime(Timestamp createdTime) {
         this.createdTime = createdTime;
     }
 
@@ -71,11 +72,11 @@ public class Comment implements Serializable {
         this.content = content;
     }
 
-    public void setCommenter(User user) {
-
-    }
-
-    public void setBlog(Blog blog) {
-
-    }
+//    public void setCommenter(User user) {
+//
+//    }
+//
+//    public void setBlog(Blog blog) {
+//
+//    }
 }
