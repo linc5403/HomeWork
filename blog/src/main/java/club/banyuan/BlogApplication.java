@@ -27,6 +27,9 @@ public class BlogApplication {
 
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         System.out.println(encoder.encode("abcd"));
+        System.out.println(encoder.encode("abcd"));
+        System.out.println(encoder.encode("abcd"));
+        System.out.println(encoder.encode("abcd"));
 
         BlogDao blogDao = context.getBean(BlogDao.class);
         System.out.println(blogDao.findBlogById(1).toString());
